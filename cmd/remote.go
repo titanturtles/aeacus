@@ -42,7 +42,11 @@ func readTeamID() {
 		mc.Conn.OverallStatus = "Your TeamID is empty! Failed to upload scores."
 		mc.Connection = false
 	} else {
-		mc.TeamID = fileContent
+		lines := strings.Split(fileContent, "\n")
+		mc.TeamID = lines[0]
+		if len(lines) > 1 {
+			mc.TeamAlias = lines[1]
+		}
 	}
 }
 
@@ -88,6 +92,9 @@ func genUpdate() (string, error) {
 	finishedUpdate := hexEncode(encryptString(mc.Config.Password, update.String()))
 	if err := obfuscateData(&mc.Config.Password); err != nil {
 		errorPrint(err)
+	}
+	if mc.TeamAlias != "" {
+		writeString(&update, "team_alias", mc.TeamAlias)
 	}
 	return finishedUpdate, nil
 }

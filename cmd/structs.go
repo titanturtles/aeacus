@@ -13,6 +13,7 @@ type metaConfig struct {
 	Conn        connData
 	Connection  bool
 	ShellActive bool
+	TeamAlias   string
 }
 
 // imageData is the current scoring data for the image. It is able to be

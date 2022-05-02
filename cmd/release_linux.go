@@ -4,7 +4,7 @@ package cmd
 // to the ScoringReport, ReadMe, and other needed files.
 func WriteDesktopFiles() {
 	infoPrint("Creating or emptying TeamID.txt...")
-	shellCommand("echo 'YOUR-TEAMID-HERE' > " + mc.DirPath + "TeamID.txt")
+	shellCommand("printf 'YOUR-TEAMID-HERE\nYOUR-TEAMALIAS-HERE' > " + mc.DirPath + "TeamID.txt")
 	shellCommand("chmod 666 " + mc.DirPath + "TeamID.txt")
 	shellCommand("chown " + mc.Config.User + ":" + mc.Config.User + " " + mc.DirPath + "TeamID.txt")
 	infoPrint("Writing shortcuts to Desktop...")
